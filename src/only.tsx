@@ -7,19 +7,35 @@ import {
     Text,
     ImageBackground,
     View,
+    Image,
   } from 'react-native';
   import { Navi } from "./app/params";
   
-import { useGetPokemonByNameQuery } from './service/getPokemon';
+import { useGetMovieListQuery } from './service/getMovieList';
 
-export default function Only({route, navigation   } : Navi ,  name  :string){
-    const { data, error, isLoading } = useGetPokemonByNameQuery('pikachu');
+export default function Only({route, navigation   } : Navi ,  id  :number){
+    console.log(id);
+    const { data, error, isLoading } = useGetMovieListQuery({name: id, page: '1'});
+    console.log(data);
     return (
-        <View>
-           <ImageBackground style={style.view}  source={{uri: data.sprites.front_default}}>
-                <Text style={style.text}>{data.species.name}</Text>
-           </ImageBackground>
-        </View>
+        <ScrollView>
+           {typeof data === 'undefined' ?
+            <View>
+                <View>
+                    <Image source={{uri :`https://image.tmdb.org/t/p/w500/${data.backdrop_path}` }} />
+                </View>
+                <View>
+                    <Text>{data.original_title}</Text>
+                </View>
+            </View>
+             :
+             <View>
+                 <Text>Error</Text>
+             </View>
+            }
+            
+            
+        </ScrollView>
     )
 }
 
