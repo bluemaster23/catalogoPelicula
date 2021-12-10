@@ -35,18 +35,18 @@ export default function Carrusel({route, navigation } : NaviH , nombre :string ,
 
   const carouse = ({item    ,index } : resInfo) =>{
     return (
-        <View style={styles.container} >
-            <TouchableHighlight onPress={()=>{
-                console.log(item.id);
-            navigation.navigate("Only",  {id : item.id} );
-        }} >
-                <View style={{borderRadius: 10 , height: 250}} >
-                    <ImgBack resizeMode={"stretch"}  source={{uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`}}></ImgBack>
-                </View>
-               <Text style={styles.Text}>{item.original_title}</Text>
-          
+        <TouchableHighlight onPress={()=>{
+                    console.log(item.id);
+                navigation.navigate("Only",  {id : item.id} );
+            }} >
+            <View style={styles.container} >
+            
+                    <View style={{borderRadius: 10 , height: 250}} >
+                        <ImgBack resizeMode={"stretch"}  source={{uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`}}></ImgBack>
+                    </View>
+                <Text style={styles.Text}>{item.original_title}</Text>
+            </View>
         </TouchableHighlight>
-        </View>
     )
   }
   
