@@ -12,10 +12,18 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "@reduxjs/toolkit": "^1.7.0",
+    "@types/react-redux": "^7.1.20",
     "react": "17.0.2",
     "react-native": "0.66.3",
+    "react-native-appearance": "^0.3.4",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.10.1"
+    "react-native-screens": "^3.10.1",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-star-rating": "^1.1.0",
+    "react-native-vector-icons": "^9.0.0",
+    "react-redux": "^7.2.6",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

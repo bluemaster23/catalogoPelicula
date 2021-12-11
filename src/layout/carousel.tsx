@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
   SafeAreaView,
@@ -10,53 +9,29 @@ import {
   View,
 } from 'react-native';
 import { useGetMovieListQuery } from '../service/getMovieList';
-interface resInfo {
-    url : string,
-    original_title : string,
-    poster_path: string,
-    id: number,
-    item : {
-        id : number,
-        original_title: string,
-        poster_path: string,
-        vote_average: number
-    },
-    index: number
-}
+import {useTheme} from '@react-navigation/native';
 import { NaviH } from "../app/params";
 import Carousel from 'react-native-snap-carousel';
+interface resInfo {
+  url : string,
+  original_title : string,
+  poster_path: string,
+  id: number,
+  item : {
+      id : number,
+      original_title: string,
+      poster_path: string,
+      vote_average: number
+  },
+  index: number
+}
+import { ViewTitle ,ViewContent } from './component';
 
-import StarRating from 'react-native-star-rating';
-import styled from 'styled-components/native';
-const  ImgBack  = styled.Image`height: 100%; width: 100%; border-radius: 5px`;
+import CardMovie from './cardMovie';
 
 export default function Carrusel({route, navigation } : NaviH , nombre :string , title: string){
   const { data, error, isLoading } = useGetMovieListQuery({name: nombre, page: '1'});
-  
-  const carouse = ({item    ,index } : resInfo) =>{
-    return (
-        <TouchableHighlight onPress={()=>{
-                navigation.navigate("Only",  { id: item.id} );
-            }} >
-            <View style={styles.container} >
-            
-                    <View style={{borderRadius: 10 , height: 250}} >
-                        <ImgBack resizeMode={"stretch"}  source={{uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`}}></ImgBack>
-                    </View>
-                    <View style={{width: 100, margin: 5}}>
-                      <StarRating
-                        disabled={true}
-                        maxStars={5}
-                        fullStarColor={"#FCD307"}
-                        rating={item.vote_average / 2 }
-                        starSize={20}
-                      />
-                    </View>
-                <Text style={styles.Text}>{item.original_title}</Text>
-            </View>
-        </TouchableHighlight>
-    )
-  }
+  const { colors } = useTheme();
   
     return (
     <ScrollView>
@@ -66,45 +41,22 @@ export default function Carrusel({route, navigation } : NaviH , nombre :string ,
           </View>
         : 
         <SafeAreaView style={{flex: 1,padding: 10, }}>
-           <View style={{flexDirection: 'row', alignContent:'center', alignSelf:"flex-end"}}>
-             <Text style={styles.title}>{title}</Text>
-             <Text >Ver mas</Text>
-            </View>
-          <View style={styles.content}>
+          <View style={{flexDirection: 'row', alignContent:'center', alignSelf:"flex-end"}}>
+            <ViewTitle>{title}</ViewTitle>
+            <Text style={{color: '#ddd'}} onPress={():void =>{ navigation.navigate("More",  {tipo : nombre}   ) }} >Ver más</Text>
+          </View>
+          <ViewContent>
             <Carousel
                 layout={"default"}
                 data={data.results}
                 sliderWidth={200}
-                renderItem={carouse}
+                renderItem={ (data: resInfo)=>{ return CardMovie(data.item  , {route, navigation } ) }}
                 itemWidth={230}
               />
-          </View>
+          </ViewContent>
         </SafeAreaView>
         }
     </ScrollView>
     );
 }
 
-
-const styles = StyleSheet.create({
-    content:{
-      flex: 1, 
-      flexDirection: 'row',
-      justifyContent: 'center'
-    },
-    container: {
-    },
-    Text: {
-      textAlign: 'left',
-      fontSize: 15,
-    },
-    img:{
-      height: 200,
-      borderRadius: 20
-    },
-    title:{
-      fontSize: 20,
-      fontWeight :'bold',
-      flex: 1
-    }
-});

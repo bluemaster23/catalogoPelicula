@@ -1,17 +1,22 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
-  SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
 } from 'react-native';
-export default function Home(){
+
+import { NaviH } from "./app/params";
+import Carrusel from './layout/carousel';
+
+
+
+export default function Home({route, navigation } : NaviH){
+
     return (
-    <View>
-        <Text>Home</Text>
-    </View>
+    <ScrollView>
+        {Carrusel({route, navigation }, "popular" , "Los más populares")}
+        {Carrusel({route, navigation }, "top_rated" , "Mejores puntuados")}
+        {Carrusel({route, navigation }, "upcoming" , "Próximas en cines")}
+    </ScrollView>
     );
 }
