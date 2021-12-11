@@ -6,42 +6,43 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import type {Node} from 'react';
-import { View, Text , StyleSheet } from 'react-native';
+import { View, Text , ScrollView, Switch } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "./src/home";
-
-const Stack = createNativeStackNavigator();
-
+import { Provider } from 'react-redux';
+import { setupStore } from './src/app/store';
+import Only from './src/only';
+import {ParamsNavigation} from "./src/app/params";
+const Stack = createNativeStackNavigator<ParamsNavigation>();
+const store = setupStore()
 const App: () => Node = () => {
+  const [mode, setmode] = useState(true);
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Provider store={store}>
+        
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={Home} 
+                options={{
+                  headerRight:function (){
+                    <Switch 
+                      thumbColor={mode ? "#fff" : "#f4f3f4"}
+                      onValueChange={()=> {setmode(previousState  => !previousState)}}
+                      value={mode}
+                    />
+                  }
+                }}
+              />
+              <Stack.Screen name="Only" component={Only} />
+
+            </Stack.Navigator>
+          </NavigationContainer>
+      </Provider>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
