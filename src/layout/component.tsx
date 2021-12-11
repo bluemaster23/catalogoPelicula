@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import {useTheme} from '@react-navigation/native';
 const { colors } = useTheme();
-
+let a  = (colors.primary === 'white') ? "#ffffff69" : '#d7d7d769';
 export const  ImgBack  = styled.Image`height: 100%; width: 100%; border-radius: 5px`;
 export const ViewText = styled.Text` text-aling: left; font-size: 15px; color: ${colors.primary}`;
 export const ViewTextIcon = styled.Text` text-aling: center; font-size: 12px; color: ${colors.primary}`;
@@ -12,4 +12,7 @@ export const ViewContentIcon = styled.View` border-radius: 100px; background-col
                                             justify-content:center;padding:5px;width:60px; height: 60px; justify-content:center;
                                             alingn-items:center`;
 export const ViewAutor = styled.View` flex: 1 ; flex-direction : row ; justify-content:center; flex-wrap: wrap; margin-top: 10px; margin-bottom:5px`;
-export const  ViewGen  = styled.View`padding: 5px 10px; border: 1px solid #c2c2c2; margin: 5px; border-radius: 15px;`;
+export const ViewGen  = styled.View`padding: 5px 10px; border: 1px solid #c2c2c2; margin: 5px; border-radius: 15px;`;
+export const ViewSearch = styled.View`alingn-items:center;  border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding-top:20px; padding-bottom: 5px;  background-color: ${colors.card}; height: 150px; flex:1 `;
+export const InputSearch =  styled.TextInput`width: 80%; margin: 0 auto ;border-radius:100px; background-color: ${a}; border-width: 0px;`;
+export const TextSearch = styled.Text`text-align: center; font-size: 23px; font-wight:bold; color: ${colors.primary} ; padding-bottom: 10px`;

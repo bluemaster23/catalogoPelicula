@@ -27,7 +27,7 @@ const MyTheme = {
     colors: {
       primary: 'white',
       background: '#1e1e1e',
-      card: 'rgb(255, 255, 255)',
+      card: '#4895ac',
       text: 'white',
       border: '#c9c9c9',
       notification: 'rgb(255, 69, 58)',
@@ -36,10 +36,10 @@ const MyTheme = {
   light:{
     dark: false,
     colors: {
-      primary: 'rgb(255, 45, 85)',
+      primary: 'black',
       background: 'rgb(242, 242, 242)',
       card: 'rgb(255, 255, 255)',
-      text: 'rgb(28, 28, 30)',
+      text: 'black',
       border: '#ddd',
       notification: 'rgb(255, 69, 58)',
     }
@@ -53,7 +53,7 @@ const App: () => Node = () => {
   return (
       <Provider store={store}>
         <AppearanceProvider>
-          <NavigationContainer  theme={scheme !== 'dark' ? MyTheme.dark :  MyTheme.light}>
+          <NavigationContainer  theme={scheme === 'dark' ? MyTheme.dark :  MyTheme.light}>
             <Stack.Navigator>
               <Stack.Screen name="Home" component={Home} 
                 options={{

@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import { useGetMovieListQuery } from '../service/getMovieList';
-import {useTheme} from '@react-navigation/native';
 import { NaviH } from "../app/params";
 import Carousel from 'react-native-snap-carousel';
 interface resInfo {
@@ -30,9 +29,7 @@ import { ViewTitle ,ViewContent } from './component';
 import CardMovie from './cardMovie';
 
 export default function Carrusel({route, navigation } : NaviH , nombre :string , title: string){
-  const { data, error, isLoading } = useGetMovieListQuery({name: nombre, page: '1'});
-  const { colors } = useTheme();
-  
+  const { data, error, isLoading } = useGetMovieListQuery({name: nombre, page: '1'});  
     return (
     <ScrollView>
         { isLoading ?
