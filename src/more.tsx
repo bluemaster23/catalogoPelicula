@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import {
-    SafeAreaView,
+    ActivityIndicator,
     ScrollView,
     StatusBar,
     StyleSheet,
@@ -26,9 +26,7 @@ export default function More({route, navigation} : NaviM, tipo :string) {
     return (
         <ScrollView>
         { (isLoading) ? 
-            <View>
-                <Text>Cargando</Text>
-            </View>:
+             <ActivityIndicator size="large" />:
             <View style={style.container}>
                 {data.results.map((res : resInfo , i :number )=> {
                     return  (

@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-    SafeAreaView,
+    ActivityIndicator,
     ScrollView,
-    StatusBar,
-    StyleSheet,
     Text,
     ImageBackground,
     View,
@@ -60,9 +58,7 @@ export default function Only({route, navigation} : Navi ){
                     </View>
                 </View>
                 :
-                <View>
-                    <Text>Cargando</Text>
-                </View>
+                <ActivityIndicator size="large" />
                 }
             
         </ScrollView>

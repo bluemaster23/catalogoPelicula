@@ -1,18 +1,9 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React , {useState} from 'react';
-import {
-  Button,
-  ScrollView,
-  Modal,
-  TouchableHighlight,
-  View,
-  Text
-} from 'react-native';
-
+import {ScrollView, Modal,TouchableHighlight,View,Text, ActivityIndicator} from 'react-native';
 import { NaviH } from "./app/params";
 import Carrusel from './layout/carousel';
-import { TextSearch ,ViewSearch , InputSearch, Content , ImgBack, ViewText, ViewList, ViewTitle} from './layout/component';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TextSearch ,ButtonGen, ViewSearch , InputSearch, Content, ImgBack, ViewText, ViewList, ViewTitle, ViewModal} from './layout/component';
 import { useGetMovieSearchQuery } from './service/getMovieList';
 interface movie {
   original_title: string,
@@ -29,12 +20,13 @@ export default function Home({route, navigation } : NaviH){
     return (
     <ScrollView>
         <ViewSearch>
-          <TextSearch>Bienvendo, ¿Que deseas ver hoy?</TextSearch>
-          <Button 
+          <TextSearch>Bienvenido, ¿Que deseas ver hoy?</TextSearch>
+          <ButtonGen 
             title='Buscar pelicula'
-            color={"#333"}
             onPress={():void=> { setBuscar(''); setVisible(!visible);}}
-          />
+          >
+            <Text>Buscar Película</Text>
+          </ButtonGen>
         </ViewSearch>   
         {Carrusel({route, navigation }, "popular" , "Los más populares")}
         {Carrusel({route, navigation }, "top_rated" , "Mejores puntuados")}
@@ -46,21 +38,18 @@ export default function Home({route, navigation } : NaviH){
           visible={visible}
         > 
          <ScrollView>
-           <View style={{flex: 1}}>
-            <Content style={{flex: 1, justifyContent: 'center' , flexDirection: 'row', alignItems:'center', backgroundColor: "#eeeeee"}}> 
+           
+            <Content> 
               <Text style={{textAlign: 'center'}} onPress={()=>setVisible(!visible)}><Icon name="close" size={40} color="#dddddd" /></Text>
               <InputSearch 
                 value={buscar}
                 onChangeText={setBuscar}
                 placeholder="Buscar"
               />
-              
             </Content>
-          </View>
+            <ViewModal>
             {(isLoading  ) ?
-              <View>
-                <Text>Cargando</Text>
-              </View>
+               <ActivityIndicator size="large" />
             :
             <View style={{flex: 1}}>
                 {data ? 
@@ -71,7 +60,7 @@ export default function Home({route, navigation } : NaviH){
                         setVisible(!visible)
                         navigation.navigate("Only",  { id: res.id} );
                     }} >
-                    <ViewList key={res.id} style={{borderBottom: 5, marginBottom: 5}} >
+                    <ViewList key={res.id} style={{borderBottom: 5, marginBottom: 5 , borderColor: '#ddd'}} >
                       <View style={{width: '35%', height: 150}} >
                         <ImgBack resizeMode={"stretch"}  source={{uri: `https://image.tmdb.org/t/p/w500/${res.poster_path}`}} />
                       </View>
@@ -87,6 +76,7 @@ export default function Home({route, navigation } : NaviH){
                 
               </View>
             }
+            </ViewModal>
           </ScrollView>
         </Modal>
 

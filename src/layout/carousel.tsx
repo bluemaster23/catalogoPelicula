@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  TouchableHighlight,
+  ActivityIndicator,
   StyleSheet,
   Text,
   Image,
@@ -33,9 +33,7 @@ export default function Carrusel({route, navigation } : NaviH , nombre :string ,
     return (
     <ScrollView>
         { isLoading ?
-          <View>
-            <Text>Cargando</Text>
-          </View>
+           <ActivityIndicator size="large" />
         : 
         <SafeAreaView style={{flex: 1,padding: 10, }}>
           <View style={{flexDirection: 'row', alignContent:'center', alignSelf:"flex-end"}}>

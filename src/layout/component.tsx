@@ -11,11 +11,12 @@ export const ViewContent = styled.View` flex: 1 ; flex-direction : row ; justify
 export const ViewContentIcon = styled.View` border-radius: 100px; background-color: ${colors.background};
                                             justify-content:center;padding:5px;width:60px; height: 60px; justify-content:center;
                                             alingn-items:center`;
-export const Content = styled.View` flex: 1; justify-content: center ; flex-direction: row ; background-color: ${colors.primary} ;align-items:center;`;
+export const Content = styled.View`flex: 1; justify-content: center ; flex-direction: row ; background-color: ${colors.card} ;align-items:center`;
 export const ViewAutor = styled.View` flex: 1 ; flex-direction : row ; justify-content:center; flex-wrap: wrap; margin-top: 10px; margin-bottom:5px`;
 export const ViewGen  = styled.View`padding: 5px 10px; border: 1px solid #c2c2c2; margin: 5px; border-radius: 15px;`;
-export const ViewSearch = styled.View`alingn-items:center;  border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding-top:20px; padding-bottom: 5px;  background-color: ${colors.card}; height: 150px; flex:1 `;
-export const InputSearch =  styled.TextInput` margin: 0 auto ; background-color: ${a}; border-width: 0px;`;
+export const ViewSearch = styled.View`alingn-items:center; ustify-content: center ; alingn-self:center;flex:1;  border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding-top:20px; padding-bottom: 5px;  background-color: ${colors.card}; height: 150px; flex:1 `;
+export const InputSearch =  styled.TextInput` width: 85%;margin: 0 auto ; background-color: ${a}; border-width: 0px;`;
 export const TextSearch = styled.Text`text-align: center; font-size: 23px; font-wight:bold; color: ${colors.primary} ; padding-bottom: 10px`;
 export const ViewList = styled.View` flex: 1 ; flex-direction : row ; justify-content:center; margin-bottom:5px; padding: 5px; border-bottom: 1px solid #ddd`;
-
+export const ButtonGen = styled.TouchableOpacity`text-align : center; padding:10px margin:0 auto; text-align:center; font-wight:bold; width: 90%;background-color: ${a}`;
+export const ViewModal = styled.View` flex: 1 ; background-color: ${colors.background}; justify-content:center; `;

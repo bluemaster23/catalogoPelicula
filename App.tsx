@@ -53,21 +53,11 @@ const App: () => Node = () => {
   return (
       <Provider store={store}>
         <AppearanceProvider>
-          <NavigationContainer  theme={scheme !== 'dark' ? MyTheme.dark :  MyTheme.light}>
+          <NavigationContainer  theme={scheme === 'dark' ? MyTheme.dark :  MyTheme.light}>
             <Stack.Navigator>
-              <Stack.Screen name="Home" component={Home} 
-                options={{
-                  headerRight: () : void  =>{
-                    <Switch 
-                      thumbColor={mode ? "#fff" : "#f4f3f4"}
-                      onValueChange={()=> {setmode(previousState  => !previousState)}}
-                      value={mode}
-                    />
-                  }
-                }}
-              />
-              <Stack.Screen name="Only" component={Only} />
-              <Stack.Screen name="More" component={More} />
+              <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+              <Stack.Screen name="Only" component={Only} options={{headerShown: false}} />
+              <Stack.Screen name="More" component={More} options={{headerShown: false}}/>
             </Stack.Navigator>
           </NavigationContainer>
           </AppearanceProvider>
