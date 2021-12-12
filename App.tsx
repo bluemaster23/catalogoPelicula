@@ -53,7 +53,7 @@ const App: () => Node = () => {
   return (
       <Provider store={store}>
         <AppearanceProvider>
-          <NavigationContainer  theme={scheme === 'dark' ? MyTheme.dark :  MyTheme.light}>
+          <NavigationContainer  theme={scheme !== 'dark' ? MyTheme.dark :  MyTheme.light}>
             <Stack.Navigator>
               <Stack.Screen name="Home" component={Home} 
                 options={{
