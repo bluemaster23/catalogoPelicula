@@ -7,10 +7,10 @@ export const movieList = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.themoviedb.org/3/' }),
   endpoints: (builder) => ({
     getMovieList: builder.query({
-      query: (data) => `movie/${data.name}?api_key=d82a8c095b2c0ad289608ce1a1349b3b&language=es-ES&page=${data.page}`,
+      query: (data) => `movie/${data.name}?api_key=xxxxx&language=es-ES&page=${data.page}`,
     }),
     getMovieSearch :builder.query({
-      query: (data) => `search/movie?api_key=d82a8c095b2c0ad289608ce1a1349b3b&language=es-ES&page=1&query=${data.name}`,
+      query: (data) => `search/movie?api_key=xxxx&language=es-ES&page=1&query=${data.name}`,
     })
   }),
 })
